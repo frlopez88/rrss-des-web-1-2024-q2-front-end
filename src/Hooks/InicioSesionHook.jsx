@@ -22,16 +22,27 @@ export const InicioSesionHook = () => {
         };
 
         try {
-            const result = axios.post(urlInicioSesion, dataIniciSesion);
-            const dataResult = (await result).data;
-            setInicioSesion(true);
-            const { info_user } = dataResult;
-            setDataUser(...info_user[0]);
-            console.log("Inicio de Sesion Exitoso")
-        } catch (err) {
-            console.log("usuario invalido");
-            console.log(err);
+            const response = await axios.post(urlInicioSesion, dataIniciSesion);
+            const data = (await response).data;
+            console.log(data);
+        }catch(error){
+            if(axios.isAxiosError(error)){
+                
+                const {response} = error;
+                const {data} = response;
+                console.log(data);
+                
+            }else{
+                console.log("Error Inesperado")
+            }
         }
+
+        
+        /*const dataResult = (await result).data;
+        setInicioSesion(true);
+        const { info_user } = dataResult;
+        setDataUser(...info_user[0]);*/
+
 
 
 

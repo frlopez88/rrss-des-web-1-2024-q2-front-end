@@ -15,7 +15,7 @@ export const InicioSesion = () => {
                 <h1 className='mb-5' >Inicio Sesion</h1>
                 <form onSubmit={submitHandler} >
                     <div className='mb-3'>
-                        <label className="form-label">Correo Electrónico</label>
+                        <label className="form-label">Nombre Usuario</label>
                         <input  onChange={changeHandler} name="nombre_usuario" type='text' className="form-control" />
                     </div>
                     <div className='mb-3'>
