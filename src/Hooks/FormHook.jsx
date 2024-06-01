@@ -11,6 +11,13 @@ export const FormHook = (endPoint) => {
         setDataForm({ ...dataForm, [name]: value })
     }
 
+    const changeHandlerImg = (event) =>{
+
+        const imagen = event.target.files[0];
+        setDataForm({ ...dataForm, ["imagen"]: imagen })
+
+    }
+
     const submitHandler = async (event) => {
 
         event.preventDefault();
@@ -20,17 +27,54 @@ export const FormHook = (endPoint) => {
             console.log(data);
         } catch (error) {
 
-            if (axios.isAxiosError(error)){
+            if (axios.isAxiosError(error)) {
 
                 const { response } = error;
                 const { data } = response;
                 console.log(data);
 
-            }else{
+            } else {
                 console.log("Error desconocido")
             }
-            
+
         }
+
+    }
+
+    const submitHandlerImg = async (event) => {
+
+        event.preventDefault();
+        const datosEnviar = new FormData();
+        const keys = Object.keys(dataForm);
+
+        keys.map(item => {
+
+            datosEnviar.append(item, dataForm[item])
+
+        });
+
+        try {
+            const result = await axios.post(endPoint, datosEnviar);
+            const data = (await result).data;
+            console.log(data);
+
+        } catch (error) {
+            if (axios.isAxiosError(error)) {
+                const { response } = error;
+                const { data } = response;
+                console.log(data);
+
+            } else {
+                console.log("Error desconocido")
+            }
+        }
+
+
+
+
+
+
+
 
     }
 
@@ -39,6 +83,8 @@ export const FormHook = (endPoint) => {
 
         //metodos
         changeHandler,
-        submitHandler
+        submitHandler, 
+        submitHandlerImg, 
+        changeHandlerImg
     }
 }
