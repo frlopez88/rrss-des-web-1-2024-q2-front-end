@@ -13,10 +13,6 @@ export const PostForm = () => {
             <h1 className='mt-5'>Creación de Usuarios</h1>
 
             <form onSubmit={submitHandlerImg} >
-                <div className='mb-3'>
-                    <label className="form-label">Nombre Usuario</label>
-                    <input name="nombre_usuario" type='text' className="form-control" onChange={changeHandler} />
-                </div>
 
                 <div className='mb-3'>
                     <label className="form-label">Descripcion</label>

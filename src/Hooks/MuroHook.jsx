@@ -6,10 +6,19 @@ export const MuroHook = () => {
     const url = "http://localhost:3000/api/publicacion";
     const [publicaciones, setPublicaciones] = useState([])
 
+    const logInfo = window.localStorage.getItem('xinfodatax');
+
     const getPublicaciones = async () => {
 
         try {
-            const result = await axios.get(url);
+
+            const result = await axios.get(url,
+                {
+                    headers: {
+                        'Authorization': `Bear ${logInfo}`
+                    }
+                });
+
             const data = (await result).data;
             setPublicaciones(data)
         } catch (error) {
@@ -21,13 +30,13 @@ export const MuroHook = () => {
             } else {
                 console.log("Error desconocido")
             }
-        }   
+        }
 
 
     }
 
     return {
-        publicaciones, 
+        publicaciones,
         getPublicaciones
     }
 }

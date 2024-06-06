@@ -6,6 +6,7 @@ const urlInicioSesion = "http://localhost:3000/api/usuario/auth";
 
 export const InicioSesionHook = () => {
 
+
     const [inicioSesion, setInicioSesion] = useState(false);
 
     const [dataUser, setDataUser] = useState({
@@ -13,6 +14,16 @@ export const InicioSesionHook = () => {
         nombre: "",
         correo: ""
     });
+
+    const setLocalStorageLog = ( value )=>{
+        try {
+            window.localStorage.setItem('xinfodatax', value);
+            location.reload();
+        }catch(err){
+            console.log(err.message);
+        }
+        
+    }
 
     const iniciarSesion = async (nombre_usuario, contrasena) => {
 
@@ -24,7 +35,8 @@ export const InicioSesionHook = () => {
         try {
             const response = await axios.post(urlInicioSesion, dataIniciSesion);
             const data = (await response).data;
-            console.log(data);
+            //console.log(data);
+            setLocalStorageLog(data.info_user);
         }catch(error){
             if(axios.isAxiosError(error)){
                 

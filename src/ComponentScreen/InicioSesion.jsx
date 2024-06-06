@@ -4,11 +4,8 @@ import { InicioSesioFormularioHook } from '../Hooks/InicioSesioFormularioHook';
 
 export const InicioSesion = () => {
 
-    
-
     const { dataForm, changeHandler, submitHandler } = InicioSesioFormularioHook();
     
-
     return (
         <>
             <div className='container' id='main' >

@@ -6,6 +6,8 @@ export const FormHook = (endPoint) => {
 
     })
 
+    const [token, setToken] = useState(window.localStorage.getItem('xinfodatax'));
+
     const changeHandler = (event) => {
         const { name, value } = event.target;
         setDataForm({ ...dataForm, [name]: value })
@@ -22,7 +24,11 @@ export const FormHook = (endPoint) => {
 
         event.preventDefault();
         try {
-            const result = await axios.post(endPoint, dataForm);
+            const result = await axios.post(endPoint, dataForm, {
+                headers : {
+                    'Authorization' : `Bear ${token}`
+                }
+            });
             const data = (await result).data;
             console.log(data);
         } catch (error) {
@@ -54,7 +60,11 @@ export const FormHook = (endPoint) => {
         });
 
         try {
-            const result = await axios.post(endPoint, datosEnviar);
+            const result = await axios.post(endPoint, datosEnviar, {
+                headers: {
+                    'Authorization' : `Bear ${token}`
+                }
+            });
             const data = (await result).data;
             console.log(data);
 
