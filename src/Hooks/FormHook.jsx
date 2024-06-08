@@ -90,7 +90,7 @@ export const FormHook = (endPoint) => {
 
     return {
         //propiedades
-
+        dataForm,
         //metodos
         changeHandler,
         submitHandler, 

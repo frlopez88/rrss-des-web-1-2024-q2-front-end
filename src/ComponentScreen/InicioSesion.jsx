@@ -5,7 +5,14 @@ import { InicioSesioFormularioHook } from '../Hooks/InicioSesioFormularioHook';
 export const InicioSesion = () => {
 
     const { dataForm, changeHandler, submitHandler } = InicioSesioFormularioHook();
-    
+
+    const registrarse = ()=>{
+
+        event.preventDefault();
+        location.href = '/crearUsuario'
+
+    }
+
     return (
         <>
             <div className='container' id='main' >
@@ -20,7 +27,7 @@ export const InicioSesion = () => {
                         <input onChange={changeHandler} name="contrasena" type='password' className="form-control" />
                     </div>
                     <button type='submit'  className='btn btn-primary w-100 mb-3' >Iniciar Sesion</button>
-                    <button className='btn btn-primary w-100 mb-3' >Registro</button>
+                    <button type='buton' onClick={registrarse} className='btn btn-primary w-100 mb-3' >Registro</button>
                 </form>
             </div>
         </>
